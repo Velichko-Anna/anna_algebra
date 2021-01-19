@@ -6,7 +6,7 @@ vector <int> VYVOD(vector <int> X)
 {
     for (auto now : X)
     {
-        cout << now << " ";
+        cout << now << "," << " ";
     }
     return X;
 }
