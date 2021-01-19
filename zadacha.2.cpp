@@ -4,9 +4,17 @@ using namespace std;
 
 vector <int> VYVOD(vector <int> X)
 {
-    for (auto now : X)
+    int i, n = X.size();
+    for (i = 0; i < n; i++)
     {
-        cout << now << "," << " ";
+        if (i < n - 1)
+        {
+            cout << X[i] << "," << " ";
+        }
+        else
+        {
+            cout << X[i];
+        }
     }
     return X;
 }
