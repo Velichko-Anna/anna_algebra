@@ -1,182 +1,189 @@
-#include <vector>
 #include <iostream>
+#include <vector>
 using namespace std;
 
+
 //ФУНКЦИЯ УМНОЖЕНИЯ СТРОКИ НА ЧИСЛО
-vector <int> YMN(vector <int> X, int n)
+vector <int> YMN(vector <int> A, int k)
 {
-cout << "Введите число, на которое умножим строку ";
-    int k, i;
-    cin >> k;
-    cout << "Умноженная на число строка: ";
+    int n = A.size(), i;
+    vector <int> S;
     for (i = 0; i < n; i++)
     {
-        cout << X[i] * k << " ";
+        S.push_back(A[i] * k);
     }
-    cout << " \n";
-    return X;
+    return S;
 }
 
-//ФУНКЦИЯ СЛОЖЕНИЯ СТРОК
-vector <int> SLOZ(vector <int> A, vector <int> B, int n1, int n2)
+
+//ФУНКЦИЯ СЛОЖЕНИЯ, ЕСЛИ ПЕРВАЯ СТРОКА ДЛИННЕ
+vector <int> SUMMA(vector <int> A, vector <int> B)
 {
-    vector <int> S, V;
+    vector <int> S;
+    int n1 = A.size(), n2 = B.size(), i, s;
     if (n1 > n2)
     {
-        //СЛОЖЕНИЕ ЕСЛИ ПЕРВАЯ СТРОКА ДЛИННЕЕ
-        int s, i;
-        for (i = n1 - n2 + 1; i < n1; i++)
-        {
-            B[i] = 0;
-        }
+        for (i = n1 - n2; i < n1; i++)
+            {
+                B[i] = 0;
+            }
         for (i = 0; i < n1; i++)
-        {
-            s = A[i] + B[i];
-            S.push_back(s);
-        }
-        //ВЫВОД СУММЫ
-        cout << "Сумма двух строк: ";
-        for (i = 0; i < n1; i++)
-        {
-            cout << S[i] << " ";
-        }
-        cout << " \n";
-        //ВЫЧИТАНИЕ ЕСЛИ ПЕРВАЯ СТРОКА ДЛИННЕЕ
-        int v;
-        for (i = n1 - n2 + 1; i < n1; i++)
-        {
-            B[i] = 0;
-        }
-        for (i = 0; i < n1; i++)
-        {
-            v = A[i] - B[i];
-            V.push_back(v);
-        }
-        //ВЫВОД РАЗНОСТИ
-        cout << "Разность двух строк: ";
-        for (i = 0; i < n1; i++)
-        {
-            cout << V[i] << " ";
-        }
-        cout << " \n";
+            {
+                s = A[i] + B[i];
+                S.push_back(s);
+            }
     }
-    if (n1 < n2)
-    {
-        //СЛОЖЕНИЕ ЕСЛИ ВТОРАЯ СТРОКА ДЛИННЕЕ
-        int s, i;
-        for (i = n2 - n1 + 1; i <= n2; i++)
-        {
-            A[i] = 0;
-        }
+
+//ФУНКЦИЯ СЛОЖЕНИЯ, ЕСЛИ ВТОРАЯ СТРОКА ДЛИННЕ
+     else if (n2 > n1)
+     {
+        for (i = n2 - n1; i < n2; i++)
+            {
+                B[i] = 0;
+            }
         for (i = 0; i < n2; i++)
-        {
-            s = B[i] + A[i];
-            S.push_back(s);
-        }
-        //ВЫВОД СУММЫ
-        cout << "Сумма двух строк: ";
-        for (i = 0; i < n2; i++)
-         {
-            cout << S[i] << " ";
-         }
-        cout << " \n";
-        //ВЫЧИТАНИЕ ЕСЛИ ВТОРАЯ СТРОКА ДЛИННЕЕ
-        int v;
-        for (i = n2 - n1 + 1; i <= n2; i++)
-        {
-            A[i] = 0;
-        }
-        for (i = 0; i < n2; i++)
-        {
-            v = B[i] - A[i];
-            V.push_back(v);
-        }
-        //ВЫВОД РАЗНОСТИ
-        cout << "Разность двух строк: ";
-        for (i = 0; i < n2; i++)
-        {
-            cout << V[i] << " ";
-        }
-        cout << " \n";
-    }
+            {
+                s = B[i] + A[i];
+                S.push_back(s);
+            }
+      }
+
+//ФУНКЦИЯ СЛОЖЕНИЯ, ЕСЛИ СТРОКИ РАВНЫЕ
     else
     {
-        //CУММА РАВНЫХ ПО ДЛИНЕ СТРОК
-        int s, i;
-        for (i = 0; i < n1; i++)
+    for (i = 0; i < n2; i++)
         {
             s = A[i] + B[i];
             S.push_back(s);
         }
-        cout << "Сумма двух строк: ";
-        for (i = 0; i < n2; i++)
-        {
-            cout << S[i] << " ";
-        }
-        cout << " \n";
-        //РАЗНОСТЬ РАНВЫХ ПО ДЛИНЕ СТРОК
-        int v;
+    }
+return S;
+}
+
+//ФУНКЦИЯ ВЫЧИТАНИЯ, ЕСЛИ ПЕРВАЯ СТРОКА ДЛИННЕЕ
+void VICH(vector <int> A, vector <int> B)
+{
+    vector <int> V;
+    int n1 = A.size(), n2 = B.size(), i, k = 2;
+    if (n1 > n2)
+    {
+        vector <int> summ = SUMMA(A, B);
+        vector <int> B1 = YMN(B, k);
+        for (i = n1 - n2; i < n1; i++)
+            {
+                B1[i] = 0;
+            }
         for (i = 0; i < n1; i++)
         {
-            v = B[i] - A[i];
+            int v = summ[i] - B1[i];
             V.push_back(v);
-        }
-        //ВЫВОД РАЗНОСТИ
-        cout << "Разность двух строк: ";
-        for (i = 0; i < n2; i++)
-        {
             cout << V[i] << " ";
         }
-        cout << " \n";
     }
-    return(S, V);
+//ФУНКЦИЯ ВЫЧИТАНИЯ, ЕСЛИ ВТОРАЯ СТРОКА ДЛИННЕЕ
+    else if (n2 > n1)
+    {
+        vector <int> summ = SUMMA(A, B);
+        vector <int> A1 = YMN(A, k);
+        for (i = n2 - n1; i < n2; i++)
+            {
+                A1[i] = 0;
+            }
+        for (i = 0; i < n2; i++)
+        {
+            int v = summ[i] - A1[i];
+            V.push_back(v);
+            cout << V[i] << " ";
+        }
+     }
+//ФУНКЦИЯ ВЫЧИТАНИЯ, ЕСЛИ СТРОКИ РАВНЫ
+    else
+    {
+        vector <int> summ = SUMMA(A, B);
+        vector <int> B1 = YMN(B, k);
+        for (i = 0; i < n1; i++)
+        {
+            int v = summ[i] - B1[i];
+            V.push_back(v);
+            cout << V[i] << " ";
+        }
+     }
 }
     
+
+
 int main()
 {
     //ВВОД СТРОКИ
-    cout << "Введите количество элементов строки ";
-    int n1, i, a;
-    vector <int> A;
+    cout << "Введите количество элементов строки: ";
+    int n1, i;
+    vector <int> A, S;
     cin >> n1;
+    
     for (i = 0; i < n1; i++)
     {
-        cout << "Введите элемент строки ";
+        cout << "Введите " << i + 1 << " элемент строки ";
+        int a;
         cin >> a;
         A.push_back(a);
     }
-    cout << "Введенная строка: ";
-        for (i = 0; i < n1; i++)
-        {
-            cout << A[i] << " ";
-        }
-        
-        cout << " \n";
     
-    YMN(A, n1);
-
+    cout << "Введенная строка: ";
+    for (i = 0; i < n1; i++)
+    {
+        cout << A[i] << " ";
+    }
+    cout << " \n";
+    
+    //УМНОЖЕНИЕ НА ЧИСЛО
+    cout << "Введите число, на которое нужно умножить строку ";
+    int k;
+    cin >> k;
+    vector <int> Y = YMN(A, k);
+    for (i = 0; i < n1; i++)
+    {
+        cout << Y[i] << " ";
+    }
+    cout << " \n";
     
     //ВВОД ВТОРОЙ СТРОКИ
-    cout << "Введите количество элементов второй строки ";
-    int n2, b;
+    cout << "Введите количество элементов второй строки: ";
+    int n2;
     vector <int> B;
     cin >> n2;
+    
     for (i = 0; i < n2; i++)
     {
-        cout << "Введите элемент строки ";
+        cout << "Введите " << i + 1 << " элемент строки ";
+        int b;
         cin >> b;
         B.push_back(b);
     }
-    cout << "Введенная строка: ";
-        for (i = 0; i < n2; i++)
-        {
-            cout << B[i] << " ";
-        }
-        
-        cout << " \n";
     
-    //СЛОЖЕНИЕ И ВЫЧИТАНИЕ СТРОК
-    SLOZ(A, B, n1, n2);
+    cout << "Введенная строка: ";
+    for (i = 0; i < n2; i++)
+    {
+        cout << B[i] << " ";
+    }
+    cout << " \n";
+    
+    //СЛОЖЕНИЕ
+    vector <int> summ = SUMMA(A, B);
+    cout << "Сумма строк ";
+    int n3 = summ.size();
+    for (i = 0; i < n3; i++)
+    {
+        cout << summ[i] << " ";
+    }
+    cout << " \n";
+    
+
+    
+    //ВЫЧИТАНИЕ
+    
+    cout << "Разность строк ";
+    VICH(A, B);
+    
     
     return 0;
 }
