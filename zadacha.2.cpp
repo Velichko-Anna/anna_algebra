@@ -7,13 +7,17 @@ vector <int> VYVOD(vector <int> X)
     int i, n = X.size();
     for (i = 0; i < n; i++)
     {
-        if (i < n - 1)
+        if (i == 0)
+        {
+            cout << "(" << X[i] << ", ";
+        }
+        else if (i < n - 1)
         {
             cout << X[i] << "," << " ";
         }
-        else
+        else if (i == n - 1)
         {
-            cout << X[i];
+            cout << X[i] << ")";
         }
     }
     return X;
@@ -39,4 +43,3 @@ int main()
     
     return 0;
 }
-
