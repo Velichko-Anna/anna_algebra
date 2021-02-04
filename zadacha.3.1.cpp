@@ -23,10 +23,11 @@ vector <int> SUMMA(vector <int> A, vector <int> B)
     int n1 = A.size(), n2 = B.size(), i, s;
     if (n1 > n2)
     {
-        for (i = n1 - n2 + 1; i < n1; i++)
+        for (i = n2; i < n1; i++)
             {
                 B[i] = 0;
             }
+        B.resize(n1);
         for (i = 0; i < n1; i++)
             {
                 s = A[i] + B[i];
@@ -35,12 +36,13 @@ vector <int> SUMMA(vector <int> A, vector <int> B)
     }
 
 //ФУНКЦИЯ СЛОЖЕНИЯ, ЕСЛИ ВТОРАЯ СТРОКА ДЛИННЕ
-      else if (n2 > n1)
+     if (n2 > n1)
      {
-        for (i = n2 - n1 + 1; i < n2; i++)
+        for (i = n1; i < n2; i++)
             {
                 A[i] = 0;
             }
+         A.resize(n2);
         for (i = 0; i < n2; i++)
             {
                 s = B[i] + A[i];
@@ -49,7 +51,7 @@ vector <int> SUMMA(vector <int> A, vector <int> B)
       }
 
 //ФУНКЦИЯ СЛОЖЕНИЯ, ЕСЛИ СТРОКИ РАВНЫЕ
-    else
+    else if (n1 == n2)
     {
     for (i = 0; i < n2; i++)
         {
@@ -57,11 +59,20 @@ vector <int> SUMMA(vector <int> A, vector <int> B)
             S.push_back(s);
         }
     }
+        
+    if (A.empty())
+    {
+        for (i = 0; i < n2; i++)
+        {
+        S.push_back(B[i]);
+        }
+    }
+    
 return S;
 }
 
 //ФУНКЦИЯ ВЫЧИТАНИЯ, ЕСЛИ ПЕРВАЯ СТРОКА ДЛИННЕЕ
-void VICH(vector <int> A, vector <int> B)
+vector <int> VICH(vector <int> A, vector <int> B)
 {
     vector <int> V;
     int n1 = A.size(), n2 = B.size(), i, k = 2;
@@ -69,15 +80,15 @@ void VICH(vector <int> A, vector <int> B)
     {
         vector <int> summ = SUMMA(A, B);
         vector <int> B1 = YMN(B, k);
-        for (i = n1 - n2; i < n1; i++)
+        for (i = n2; i < n1; i++)
             {
                 B1[i] = 0;
             }
+        B.resize(n1);
         for (i = 0; i < n1; i++)
         {
             int v = summ[i] - B1[i];
             V.push_back(v);
-            cout << V[i] << " ";
         }
     }
 //ФУНКЦИЯ ВЫЧИТАНИЯ, ЕСЛИ ВТОРАЯ СТРОКА ДЛИННЕЕ
@@ -85,15 +96,15 @@ void VICH(vector <int> A, vector <int> B)
     {
         vector <int> summ = SUMMA(A, B);
         vector <int> A1 = YMN(A, k);
-        for (i = n2 - n1; i < n2; i++)
+        for (i = n1; i < n2; i++)
             {
                 A1[i] = 0;
             }
+        A.resize(n2);
         for (i = 0; i < n2; i++)
         {
             int v = summ[i] - A1[i];
             V.push_back(v);
-            cout << V[i] << " ";
         }
      }
 //ФУНКЦИЯ ВЫЧИТАНИЯ, ЕСЛИ СТРОКИ РАВНЫ
@@ -105,9 +116,9 @@ void VICH(vector <int> A, vector <int> B)
         {
             int v = summ[i] - B1[i];
             V.push_back(v);
-            cout << V[i] << " ";
         }
      }
+    return V;
 }
     
 
@@ -115,23 +126,54 @@ void VICH(vector <int> A, vector <int> B)
 int main()
 {
     
-    //СЛОЖЕНИЕ, ЕСЛИ ПЕРВАЯ СТРОКА ДЛИННЕЕ
+    //УМНОЖЕНИЕ СТРОКИ НА ЧИСЛО
     vector <int> a = {1, 2, 3, 4, 5};
-    vector <int> b = {5, 4, 1};
-    vector <int> s1 = SUMMA(a, b);
-    assert((s1 == vector <int> {6, 6, 4, 4, 5}));
-
+    int k = 2;
+    vector <int> u = YMN(a, k);
+    assert((u == vector <int> {2, 4, 6, 8, 10}));
+    
+    //СЛОЖЕНИЕ, ЕСЛИ ПЕРВАЯ СТРОКА ДЛИННЕЕ
+    vector <int> a1 = {1, 2, 3, 4, 5};
+    vector <int> b1 = {1, 2, 3};
+    vector <int> s1 = SUMMA(a1, b1);
+    assert((s1 == vector <int> {2, 4, 6, 4, 5}));
+    
     //СЛОЖЕНИЕ, ЕСЛИ ВТОРАЯ СТРОКА ДЛИННЕЕ
-    vector <int> c = {5, 4, 1};
-    vector <int> d = {1, 2, 3, 4, 5};
-    vector <int> s2 = SUMMA(c, d);
-    assert((s2 == vector <int> {6, 6, 4, 4, 5}));
+    vector <int> c1 = {5, 4, 1, 1};
+    vector <int> d1 = {1, 2, 3, 4, 5};
+    vector <int> s2 = SUMMA(c1, d1);
+    assert((s2 == vector <int> {6, 6, 4, 5, 5}));
     
     //СЛОЖЕНИЕ, ЕСЛИ СТРОКИ РАВНЫЕ
-    vector <int> e = {5, 4, 1, 4, 5};
-    vector <int> f = {1, 2, 3, 4, 5};
-    vector <int> s3 = SUMMA(e, f);
+    vector <int> e1 = {5, 4, 1, 4, 5};
+    vector <int> f1 = {1, 2, 3, 4, 5};
+    vector <int> s3 = SUMMA(e1, f1);
     assert((s3 == vector <int> {6, 6, 4, 8, 10}));
     
+    /*СЛОЖЕНИЕ, ЕСЛИ ВТОРАЯ СТРОКА НУЛЕВАЯ
+    vector <int> h1 = {};
+    vector <int> l1 = {1, 2, 3, 4, 5};
+    vector <int> s4 = SUMMA(h1, l1);
+    assert((s4 == vector <int> {1, 2, 3, 4, 5}));*/
+    
+    //ВЫЧИТАНИЕ, ЕСЛИ ПЕРВАЯ СТРОКА ДЛИННЕЕ
+    vector <int> a2 = {1, 2, 3, 4, 5};
+    vector <int> b2 = {5, 4, 1};
+    vector <int> v1 = VICH(a2, b2);
+    assert((v1 == vector <int> {-4, -2, 2, 4, 5}));
+    
+    //ВЫЧИТАНИЕ, ЕСЛИ ВТОРАЯ СТРОКА ДЛИННЕЕ
+    vector <int> c2 = {5, 4, 1};
+    vector <int> d2 = {1, 2, 3, 4, 5};
+    vector <int> v2 = VICH(c2, d2);
+    assert((v2 == vector <int> {-4, -2, 2, 4, 5}));
+    
+    //ВЫЧИТАНИЕ, ЕСЛИ СТРОКИ РАВНЫ
+    vector <int> e2 = {5, 4, 1, 4, 5};
+    vector <int> f2 = {1, 2, 3, 4, 5};
+    vector <int> v3 = VICH(e2, f2);
+    assert((v3 == vector <int> {4, 2, -2, 0, 0}));
+    
+   
     return 0;
 }
