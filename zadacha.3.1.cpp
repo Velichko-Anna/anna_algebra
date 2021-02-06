@@ -27,7 +27,6 @@ vector <int> SUMMA(vector <int> A, vector <int> B)
     for (i = 0; i < size; i++)
     {
         S[i] = A[i] + B[i];
-        cout << S[i] << " ";
     }
     
     return S;
