@@ -1,7 +1,8 @@
-#ifndef print_H
-#define print_H
-using namespace std;
+#ifndef PRINT_H
+#define PRINT_H
 
-vector <int> PRINT(vector<int> X);
+#include <vector>
 
-#endif
+void PRINT(std::vector<int> X);
+
+#endif  // PRINT_H

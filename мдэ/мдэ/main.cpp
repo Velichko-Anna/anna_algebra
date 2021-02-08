@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 #include "print.h"
-using namespace std;
 
+using namespace std;
 
 int main()
 {
@@ -12,4 +12,3 @@ int main()
    
     return 0;
 }
-

@@ -1,13 +1,12 @@
-#include <iostream>
-#include <vector>
 #include "print.h"
+#include <iostream>
+
 using namespace std;
 
-vector <int> PRINT(vector <int> X)
+void PRINT(vector <int> X)
 {
-    int i, n = X.size();
     cout << "(";
-    for (i = 0; i < n; i++)
+    for (int i = 0, n = X.size(); i < n; i++)
     {
         if (i < n - 1)
         {
@@ -18,7 +17,7 @@ vector <int> PRINT(vector <int> X)
             cout << X[i];
         }
     }
-    cout << ")"; 
-    return X;
+    cout << ")";
 }
+
 
