@@ -3,18 +3,18 @@
 #include <vector>
 using namespace std;
 
-void PRINT(vector <int> X)
+void PRINT(vector <int> x)
 {
     cout << "(";
-    for (int i = 0, n = X.size(); i < n; i++)
+    for (int i = 0, n = x.size(); i < n; i++)
     {
         if (i < n - 1)
         {
-            cout << X[i] << "," << " ";
+            cout << x[i] << "," << " ";
         }
         else if (i == n - 1)
         {
-            cout << X[i];
+            cout << x[i];
         }
     }
     cout << ")";
