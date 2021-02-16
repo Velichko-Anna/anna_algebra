@@ -3,6 +3,6 @@
 
 #include <vector>
 
-void PRINT(std::vector<int> x);
+void Print(std::vector<int> x);
 
 #endif  // PRINT_H
