@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-void PRINT(vector <int> x)
+void Print(vector <int> x)
 {
     cout << "(";
     for (int i = 0, n = x.size(); i < n; i++)
