@@ -56,3 +56,24 @@ vector < vector <double> > MatrixSubtract(vector < vector <double> > matrix, int
   }
   return result;
 }
+
+//ПЕРЕСТАНОВКА СТРОК
+vector < vector <double> > MatrixChange(vector < vector <double> > matrix, int index1, int index2)
+{
+    vector < vector <double> > result(matrix.size());
+    for (int i = 1; i < matrix.size(); i++)
+    {
+      if ((i != index1) && (i != index2))
+      {
+          result[i] = matrix[i];
+      }
+      else
+      {
+          vector <double> change = matrix[index1];
+          matrix[index1] = matrix[index2];
+          matrix[index2] = change; 
+      }
+    }
+    return result;
+    
+}
