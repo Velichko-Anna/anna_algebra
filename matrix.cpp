@@ -9,7 +9,7 @@ using namespace std;
 vector < vector <double> > MatrixMultiply(vector < vector <double> > matrix, int index, double k)
 {
   vector < vector <double> > result(matrix.size());
-  for (int i = 1; i < matrix.size(); i++)
+  for (int i = 0; i < matrix.size(); i++)
   {
     if (i == index)
     {
@@ -23,14 +23,15 @@ vector < vector <double> > MatrixMultiply(vector < vector <double> > matrix, int
   return result;
 }
 
-vector < vector <double> > MatrixSumma(vector < vector <double> > matrix, int index1, int index2)
+//СЛОЖЕНИЕ СТРОК МАТРИЦЫ
+vector < vector <double> > MatrixSumma(vector <vector <double>> matrix, int index, vector <double> line)
 {
-  vector < vector <double> > result(matrix.size());
-  for (int i = 1; i < matrix.size(); i++)
+  vector <vector <double>> result(matrix.size());
+  for (int i = 0; i < matrix.size(); i++)
   {
-    if (i == index1)
+    if (i == index)
     {
-        result[i] = Summa(matrix[index1], matrix[index2]);
+        result[i] = Summa(matrix[index], line);
     }
     else
     {
@@ -40,14 +41,15 @@ vector < vector <double> > MatrixSumma(vector < vector <double> > matrix, int in
   return result;
 }
 
-vector < vector <double> > MatrixSubtract(vector < vector <double> > matrix, int index1, int index2)
+//РАЗНОСТЬ СТРОК МАТРИЦЫ
+vector <vector <double>> MatrixSubtract(vector <vector <double>> matrix, int index, vector <double> line)
 {
-  vector < vector <double> > result(matrix.size());
-  for (int i = 1; i < matrix.size(); i++)
+  vector <vector <double>> result(matrix.size());
+  for (int i = 0; i < matrix.size(); i++)
   {
-    if (i == index1)
+    if (i == index)
     {
-        result[i] = Subtract(matrix[i], matrix[index2]);
+        result[i] = Subtract(matrix[index], line);
     }
     else
     {
@@ -58,10 +60,10 @@ vector < vector <double> > MatrixSubtract(vector < vector <double> > matrix, int
 }
 
 //ПЕРЕСТАНОВКА СТРОК
-vector < vector <double> > MatrixChange(vector < vector <double> > matrix, int index1, int index2)
+vector <vector <double>> MatrixChange(vector <vector <double>> matrix, int index1, int index2)
 {
-    vector < vector <double> > result(matrix.size());
-    for (int i = 1; i < matrix.size(); i++)
+    vector <vector <double>> result(matrix.size());
+    for (int i = 0; i < matrix.size(); i++)
     {
       if ((i != index1) && (i != index2))
       {
