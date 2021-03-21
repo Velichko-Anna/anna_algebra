@@ -5,7 +5,7 @@
 using namespace std;
 
 //УМНОЖЕНИЕ СТРОКИ МАТРИЦЫ
-vector <vector <double>> MatrixMultiply(vector <vector <double>> matrix, int ind, double k);
+vector <vector <double>> MatrixMultiply(vector <vector <double>> matrix, int index, double k);
 
 //СЛОЖЕНИЕ СТРОК МАТРИЦЫ
 vector <vector <double>> MatrixSumma(vector <vector <double>> matrix, int index, vector <double> line);
