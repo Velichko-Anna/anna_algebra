@@ -3,8 +3,22 @@
 
 #include <vector>
 
-std::vector <double> Multiply(std::vector <double> a, double k);
-std::vector <double> Summa(std::vector <double> a, std::vector <double> b);
-std::vector <double> Subtract(std::vector <double> a, std::vector <double> b);
+
+
+struct Row
+{
+  //members
+  std::vector <double> row;
+
+  //methods
+  int size();
+  Row Multiply(double k); 
+  Row Summa(Row b);
+  Row Substract(Row b); 
+};
+
+  //Row Multiply(Row a, double k);
+  //Row Summa(Row a, Row b);
+  //Row Subtract(Row a, Row b);
 
 #endif
