@@ -37,6 +37,13 @@ void TestMultiplyMatrix()
     double k3 = 1;
     vector <vector <double>> result3 =  MatrixMultiply(matrix3, index3, k3);
     assert((result3 == vector <vector <double>> {{1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}}));
+    
+    //УМНОЖЕНИЕ НА СТРОКУ, ПРЕВЫШАЮЩУЮ РАЗМЕР МАТРИЦЫ
+    vector <vector <double>> matrix12 = {{1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}};
+    int index12 =4;
+    double k12 = 2;
+    vector <vector <double>> result12 =  MatrixMultiply(matrix12, index12, k12);
+    assert((result12 == vector <vector <double>> {{1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}}));
 }
 
 //ТЕСТЫ СУММЫ
@@ -55,6 +62,13 @@ void TestSummaMatrix()
     int index5 = 2;
     vector <vector <double>> result5 = MatrixSumma(matrix5, index5, line5);
     assert((result5 == vector <vector <double>> {{1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}}));
+    
+    //СЛОЖЕНИЕ СО СТРОКОЙ, КОТОРАЯ ПРЕВЫШАЕТ РАЗМЕР МАТРИЦЫ
+    vector <vector <double>> matrix13 = {{1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}};
+    vector <double> line13 = {1, 2, 3};
+    int index13 = 4;
+    vector <vector <double>> result13 = MatrixSumma(matrix13, index13, line13);
+    assert((result13 == vector <vector <double>> {{1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}}));
 }
     
 
@@ -67,6 +81,13 @@ void TestSubtractMatrix()
     int index8 = 1;
     vector <vector <double>> result8 = MatrixSubtract(matrix8, index8, line8);
     assert((result8 == vector <vector <double>> {{1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}}));
+    
+    //РАЗНОСТЬ СО СТРОКОЙ, РАЗМЕР КОТОРОЙ ПРЕВЫШАЕТ РАЗМЕР МАТРИЦЫ
+    vector <vector <double>> matrix14 = {{1.1, 2.2, 3.3}, {2.2, 4.4, 6.6}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}};
+    vector <double> line14 = {1.1, 2.2, 3.3};
+    int index14 = 4;
+    vector <vector <double>> result14 = MatrixSubtract(matrix14, index14, line14);
+    assert((result14 == vector <vector <double>> {{1.1, 2.2, 3.3}, {2.2, 4.4, 6.6}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}}));
 }
 
 //ТЕСТ ПЕРЕСТАНОВКА СТРОК
@@ -74,12 +95,12 @@ void TestChangeMatrix()
 {
     //ПЕРЕСТАНОВКА ВТОРОЙ И ТРЕТЬЕЙ СТРОКИ
     vector <vector <double>> matrix9 = {{1.1, 2.2, 3.3}, {2.2, 4.4, 6,6}, {1, 2, 3}, {1.1, 2.2, 3.3}};
-    vector <vector <double>> result9 = MatrixChange(matrix9, 2, 3);
+    vector <vector <double>> result9 = MatrixChange(matrix9, 1, 2);
     assert((result9 == vector <vector <double>> {{1.1, 2.2, 3.3}, {1, 2, 3}, {2.2, 4.4, 6.6}, {1.1, 2.2, 3.3}}));
     
     //ПЕРЕСТАНОВКА ПЕРВОЙ И ЧЕТВЕРТОЙ СТРОКИ
     vector <vector <double>> matrix10 = {{2.2, 4.4, 6.6}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}, {1, 2, 3}};
-    vector <vector <double>> result10 = MatrixChange(matrix10, 1, 4);
+    vector <vector <double>> result10 = MatrixChange(matrix10, 0, 3);
     assert((result10 == vector <vector <double>> {{1, 2, 3}, {1.1, 2.2, 3.3}, {1.1, 2.2, 3.3}, {2.2, 4.4, 6.6}}));
 }
 
