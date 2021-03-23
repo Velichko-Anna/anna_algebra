@@ -6,39 +6,43 @@
 
 using namespace std;
 
+//реализация методов структуры Row
+int Row::size()
+{
+  return row.size();
+}
 
 //ФУНКЦИЯ УМНОЖЕНИЯ СТРОКИ НА ЧИСЛО
-vector <double> Multiply(vector <double> a, double k)
+Row Row::Multiply(double k)
 {
-    int i;
-    vector <double> s;
-    for (i = 0; i < a.size(); i++) 
+    Row s;
+    for (int i = 0; i < size(); i++) 
     {
-        s.push_back(a[i] * k);
+        s.row.push_back(row[i] * k);
     }
     return s;
 }
 
 //ФУНКЦИЯ СЛОЖЕНИЯ
-vector <double> Summa(vector <double> a, vector <double> b)
+Row Row::Summa(Row b)
 { 
-    double size = max(a.size(), b.size());
-	int i; 
-	vector <double> s(size, 0);
-    a.resize(size, 0);
-    b.resize(size, 0);
-    for (i = 0; i < size; i++)
+    int maxSize = max(size(), b.size());
+    Row s;
+    s.row = vector<double>(maxSize, 0);
+    row.resize(maxSize, 0);
+    b.row.resize(maxSize, 0);
+    for (int i = 0; i < maxSize; i++)
     {
-        s[i] = a[i] + b[i];
+        s.row[i] = row[i] + b.row[i];
     }
     
     return s;
 }
     
 //ФУНКЦИЯ ВЫЧИТАНИЯ
-vector <double> Subtract(vector <double> a, vector <double> b)
+Row Row::Substract(Row b)
 {
-    vector <double> u = Multiply(b, -1);
-    vector <double> v = Summa(a, u);
+    Row u = b.Multiply(-1.);
+    Row v = Summa(u);
     return v;
 }
